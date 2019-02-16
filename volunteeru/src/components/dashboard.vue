@@ -41,6 +41,11 @@
           </v-layout>
       </v-flex>
     </v-layout>
+        <div class="fixed-action-btn">
+        <router-link to="/new" class = "btn-floating btn-large green">
+            <i class ="fa fa-plus"></i>
+        </router-link>
+        </div>
   </v-container>
  
 </template>
