@@ -10,12 +10,27 @@
     </div>
 </template>
     <script>
+        import db from './firebaseInit'
         export default {
             name: 'dashboard',
             data() {
                 return {
-
+                    events: []
                 }
+            },
+            created () {
+                db.collection('Events').get().then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                        console.log(doc)
+                        const data = {
+                            'id' : doc.id,
+                            'title' : doc.title,
+                            'length' : doc.length,
+                            'description' : doc.description,
+                            'users' : doc.users
+                        }
+                    });
+                })
             }
         }
     </script>
