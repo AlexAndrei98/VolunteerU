@@ -20,6 +20,22 @@ limitations under the License.
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Email/Password Authentication Example</title>
 
+<!-- Copied from google -->
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCU4EZgiTSvWbF89MTbUVYl1wkcBasRGbk",
+    authDomain: "volunteeru-01.firebaseapp.com",
+    databaseURL: "https://volunteeru-01.firebaseio.com",
+    projectId: "volunteeru-01",
+    storageBucket: "",
+    messagingSenderId: "150035794096"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
   <!-- Material Design Theming -->
   <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -34,6 +50,7 @@ limitations under the License.
   <script src="/__/firebase/5.7.0/firebase-auth.js"></script>
   <script src="/__/firebase/init.js"></script>
 
+  
   <script type="text/javascript">
 
     /**
