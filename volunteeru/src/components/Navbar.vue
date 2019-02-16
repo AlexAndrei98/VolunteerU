@@ -1,8 +1,8 @@
  <template>
   <nav>
-      <div class="nav-wrapper green">
+      <div class="green">
         <div class="container">
-          <router-link to="/" class="brand-logo">VolunteerU</router-link>    
+          <router-link to="/" style="    font-size: 40px;">VolunteerU</router-link>    
         </div>
       </div>
     </nav>

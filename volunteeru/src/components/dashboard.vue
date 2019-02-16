@@ -1,26 +1,43 @@
 <template>
-<div id="dashboard">
-    <ul class="collection with-header">
-        <li class="collection-header"><h4>
-            Events
-            </h4>
-        </li>
-        <li v-for="event in events" v-bind:key = event.id
-        class="collection-item"> 
-        Title: {{event.title}} 
-        <br>
-        Description: {{event.description}}
-        <br>
-        Signed up to this event: {{event.users}}
-        </li>
-    </ul>
+<!-- <div id="dashboard">
+<div class="col-6"> -->
 
-    <div class="fixed-action-btn">
-        <router-link to="/new" class = "btn-floating btn-large green">
-            <i class ="fa fa-plus"></i>
-        </router-link>
+<v-container fluid>
+    <v-layout column>
+      <v-flex xs5 v-for="event in events" v-bind:key = event.id style="margin-top:20px;"> 
+        <div class="resultContainer">
+          <v-layout>
+      <v-card > 
+        <v-img
+          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+          height="200px"
+          width="300px"
+        >
+        </v-img>
+
+        <v-card-title primary-title>
+          <div>
+            <div class="headline">{{event.title}}</div>
+            <span class="grey--text">Length: {{event.length}} hrs</span>
+          </div>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn flat>Learn More</v-btn>
+          <v-btn v-if="userRegistered" flat color="blue">Register</v-btn>
+          <v-btn v-else flat color="red">Unregister</v-btn>
+
+        </v-card-actions>
+
+
+      </v-card>
+
+          </v-layout>
         </div>
-    </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
+ 
 </template>
 
     <script>
@@ -30,6 +47,7 @@
             data() {
                 return {
                     events: []
+                    
                 }
             },
             created () {
@@ -41,11 +59,13 @@
                             'title' : doc.data().title,
                             'length' : doc.data().length,
                             'description' : doc.data().description,
-                            'users' : doc.data().users
+                            'users' : doc.data().users,
+                            'img' : doc.data().img
                         }
                         this.events.push(data)
                     });
                 })
             }
         }
+        
     </script>
