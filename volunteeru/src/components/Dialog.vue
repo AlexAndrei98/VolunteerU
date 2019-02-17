@@ -39,8 +39,10 @@
                 <v-card-text>{{event.description.slice(0,200).concat("", "...")}}</v-card-text>
                 <v-card-actions>
                   <v-btn flat>Learn More</v-btn>
-                  <v-btn v-if="userRegistered" flat color="blue" @click="add(event)">Register</v-btn>
-                  <v-btn v-else flat color="red">Unregister</v-btn>
+                  <v-btn v-if="userRegistered" flat color="blue" @click="add(event)"
+                  >Register</v-btn>
+
+                  <v-btn v-else flat color="red" @click="userRegistered = true">Unregister</v-btn>
                 </v-card-actions>
               </v-card>
             </v-layout>
@@ -92,6 +94,7 @@ export default {
   },
   methods: {
     add(event) {
+      this.userRegistered = false;
       db.collection("Events")
         .add({
           title: event.title,
