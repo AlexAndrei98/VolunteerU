@@ -10,55 +10,54 @@
           </v-toolbar-items>
         </v-toolbar>
         <v-list three-line subheader>
-          <v-subheader><h3>Based on your interest in: Nature {{somethingcool}}</h3></v-subheader>
+          <v-subheader>
+            <h3>Based on your interest in: Nature {{somethingcool}}</h3>
+          </v-subheader>
           <v-container fluid grid-list-sm>
-        <v-layout row wrap>
-        <v-card  v-for="event in events" v-bind:key="event.id" style="margin:5px; margin-top:5vh;" width="45vh">
-                  <!-- <v-img
+            <v-layout row wrap>
+              <v-card
+                v-for="event in events"
+                v-bind:key="event.id"
+                style="margin:5px; margin-top:5vh;"
+                width="45vh"
+              >
+                <!-- <v-img
           class= "purple darken-2"
           height="200px"
           width="345px"
         >
-        </v-img> -->
-        
-            <v-card-title primary-title>
-              <div>
-                <div class="headline">{{event.title}}</div>
-                <span
-                  class="grey--text"
-                >Length: {{event.length.toFixed(2)}} hrs Date: {{event.date.toLocaleDateString()}}</span>
-              </div>
-            </v-card-title>
+                </v-img>-->
+                <v-card-title primary-title>
+                  <div>
+                    <div class="headline">{{event.title}}</div>
+                    <span
+                      class="grey--text"
+                    >Length: {{event.length.toFixed(2)}} hrs Date: {{event.date.toLocaleDateString()}}</span>
+                  </div>
+                </v-card-title>
 
-
-            <v-card-text>{{event.description.slice(0,200).concat("", "...")}}</v-card-text>
-            <v-card-actions>
-              <v-btn flat>Learn More</v-btn>
-              <v-btn v-if="userRegistered" flat color="blue">Register</v-btn>
-              <v-btn v-else flat color="red">Unregister</v-btn>
-            </v-card-actions>
-          </v-card>
-          </v-layout>
-        </v-container>
-
-</v-list>
-
+                <v-card-text>{{event.description.slice(0,200).concat("", "...")}}</v-card-text>
+                <v-card-actions>
+                  <v-btn flat>Learn More</v-btn>
+                  <v-btn v-if="userRegistered" flat color="blue" @click="add(event)">Register</v-btn>
+                  <v-btn v-else flat color="red">Unregister</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-layout>
+          </v-container>
+        </v-list>
 
         <v-divider></v-divider>
-
 
         <v-list three-line subheader>
           <v-subheader>Based on your interest in: Technology{{somethingcool}}</v-subheader>
         </v-list>
-        
-        
-        <v-divider></v-divider>
 
+        <v-divider></v-divider>
 
         <v-list three-line subheader>
           <v-subheader>Based on your interest in: Pets{{somethingcool}}</v-subheader>
         </v-list>
-
       </v-card>
     </v-dialog>
   </v-layout>
@@ -67,21 +66,22 @@
 
 <script>
 import axios from "axios";
+import db from './firebaseInit'
 
 export default {
   name: "newEvent",
   props: {
-     value: Boolean
+    value: Boolean
   },
   computed: {
     show: {
-      get () {
-        return this.value
+      get() {
+        return this.value;
       },
-      set (value) {
-         this.$emit('input', value)
+      set(value) {
+        this.$emit("input", value);
       }
-    },
+    }
   },
   data() {
     return {
@@ -91,6 +91,21 @@ export default {
     };
   },
   methods: {
+    add(event) {
+      db.collection("Events")
+        .add({
+          title: event.title,
+          length: event.length,
+          description: event.description
+          // date: new Date(event.local)
+        })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    },
     getEvents(topic) {
       const apiKey = "H3GRCF3QTFHEFSUIYHWU";
       // const url = 'https://www.eventbriteapi.com/v3/categories/'
