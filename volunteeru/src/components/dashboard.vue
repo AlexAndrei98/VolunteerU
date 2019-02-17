@@ -1,17 +1,12 @@
 <template>
-<!-- <div id="dashboard">
-<div class="col-6"> -->
-
-<v-container fluid>
-    <v-layout column>
-      <v-flex v-for="event in events" v-bind:key = event.id style="margin-top:20px;"> 
-
-    <v-layout>
-      <v-card> 
+<div>
+      <v-container fluid grid-list-sm>
+       <v-layout row wrap>
+      <v-card v-for="event in events" v-bind:key = event.id style="margin-right:10px; margin-top:20px;">
         <v-img
           class= "purple darken-2"
           height="200px"
-          width="300px"
+          width="345px"
         >
         </v-img>
 
@@ -29,10 +24,7 @@
         </v-card-actions>
       </v-card>
           </v-layout>
-
-      </v-flex>
-    </v-layout>
-
+        </v-container>
     <footer>
         <div class="fixed-action-btn">
           <v-btn class = "btn-floating btn-large green"
@@ -42,7 +34,7 @@
         <Dialog v-model="showDialog" />
         </div>
     </footer>
-  </v-container>
+    </div>
 </template>
 
     <script>
