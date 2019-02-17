@@ -62,81 +62,80 @@
           <v-flex xs12 sm6 md6>
             <v-radio-group v-model="ex6" column>
               <v-radio
-                label="Nature"
+                label="Disabled Individuals"
                 color="red"
-                value="red"
+                value="1"
+                required
               ></v-radio>
               <v-radio
                 label="Children"
-                color="red darken-3"
-                value="red darken-3"
+                color="red"
+                value="2"
               ></v-radio>
               <v-radio
-                label="Disabled"
+                label="Physical Development"
+                color="red"
+                value="3"
+              ></v-radio>      
+            </v-radio-group>
+          </v-flex>
+          <v-flex xs12 sm6 md6>
+            <v-radio-group v-model="ex6" column>
+              <v-radio
+                label="Environment"
+                color="green"
+                value="1"
+              ></v-radio>
+              <v-radio
+                label="Education"
+                color="green"
+                value="2"
+              ></v-radio>
+              <v-radio
+                label="Disaster Relief"
+                color="green"
+                value="3"
+              ></v-radio>      
+            </v-radio-group>
+          </v-flex>
+          <v-flex xs12 sm6 md6>
+            <v-radio-group v-model="ex6" column>
+              <v-radio
+                label="Health"
                 color="indigo"
-                value="indigo"
+                value="1"
+              ></v-radio>
+              <v-radio
+                label="Hunger"
+                color="indigo"
+                value="2"
+              ></v-radio>
+              <v-radio
+                label="Access to potable water"
+                color="indigo"
+                value="3"
               ></v-radio>      
             </v-radio-group>
           </v-flex>
                     <v-flex xs12 sm6 md6>
             <v-radio-group v-model="ex6" column>
               <v-radio
-                label="Nature"
-                color="red"
-                value="red"
+                label="Women"
+                color="yellow"
+                value="1"
               ></v-radio>
               <v-radio
-                label="Children"
-                color="red darken-3"
-                value="red darken-3"
+                label="Seniors"
+                color="yellow"
+                value="2"
               ></v-radio>
               <v-radio
-                label="Disabled"
-                color="indigo"
-                value="indigo"
+                label="Veterans"
+                color="yellow"
+                value="3"
               ></v-radio>      
             </v-radio-group>
           </v-flex>
-                    <v-flex xs12 sm6 md6>
-            <v-radio-group v-model="ex6" column>
-              <v-radio
-                label="Nature"
-                color="red"
-                value="red"
-              ></v-radio>
-              <v-radio
-                label="Children"
-                color="red darken-3"
-                value="red darken-3"
-              ></v-radio>
-              <v-radio
-                label="Disabled"
-                color="indigo"
-                value="indigo"
-              ></v-radio>      
-            </v-radio-group>
-          </v-flex>
-                    <v-flex xs12 sm6 md6>
-            <v-radio-group v-model="ex6" column>
-              <v-radio
-                label="Nature"
-                color="red"
-                value="red"
-              ></v-radio>
-              <v-radio
-                label="Beaches"
-                color="red darken-3"
-                value="red darken-3"
-              ></v-radio>
-              <v-radio
-                label="Disabled"
-                color="indigo"
-                value="indigo"
-              ></v-radio>      
-            </v-radio-group>
-          </v-flex>
-
-
 
         </v-layout>
       </v-container>
@@ -179,7 +178,10 @@
       return {
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        isAdmin : false,
+        interests: [],
+        eventsRegistered: []
       }
     },
     computed: {
@@ -199,7 +201,7 @@
     watch: {
       user (value) {
         if (value !== null && value !== undefined) {
-          this.$router.push('/profile')
+          this.$router.push('/dashboard')
         }
       }
     },
@@ -209,15 +211,6 @@
       },
       onSigninGoogle () {
         this.$store.dispatch('signUserInGoogle')
-      },
-      onSigninFacebook () {
-        this.$store.dispatch('signUserInFacebook')
-      },
-      onSigninGithub () {
-        this.$store.dispatch('signUserInGithub')
-      },
-      onSigninTwitter () {
-        this.$store.dispatch('signUserInTwitter')
       },
       onDismissed () {
         this.$store.dispatch('clearError')

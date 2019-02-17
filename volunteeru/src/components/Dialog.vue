@@ -125,7 +125,6 @@ export default {
           }
         })
         .then(res => {
-          console.log;
           this.events = [];
           for (let event of res.data.events) {
             const data = {
@@ -158,7 +157,6 @@ export default {
           }
         })
         .then(res => {
-          console.log;
           this.events = [];
           for (let event of res.data.events) {
             const data = {
@@ -177,7 +175,6 @@ export default {
   },
   created() {
     this.getEvents("nature");
-    // console.log(this.events.length)
   }
 };
 </script>

@@ -54,7 +54,6 @@
             created () {
                 db.collection('Events').get().then(querySnapshot => {
                     querySnapshot.forEach(doc => {
-                        console.log(doc.data())
                         const data = {
                             'id' : doc.data().id,
                             'title' : doc.data().title,
@@ -65,13 +64,12 @@
                         this.events.push(data)
                     });
                 })
-                // firebase.auth().onAuthStateChanged((user) => {
-                // if (user) {
-                //   this.$store.dispatch('autoSignIn', user)
-                //   }
-                // })
+                firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                  this.$store.dispatch('autoSignIn', user)
+                  }
+                })
               }
-    // firebase.initializeApp(firebaseConfig)
     
   }
  </script>

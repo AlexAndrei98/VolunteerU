@@ -19,9 +19,11 @@ export default {
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
-              name: user.displayName,
+              username: user.displayName,
               email: user.email,
-              photoUrl: user.photoURL
+              isAdmin: user.isAdmin,
+              interests: user.interests,
+              eventsRegistered: user.events_registered
             }
             commit('setUser', newUser)
           }
@@ -43,9 +45,11 @@ export default {
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
-              name: user.displayName,
+              username: user.displayName,
               email: user.email,
-              photoUrl: user.photoURL
+              isAdmin: user.isAdmin,
+              interests: user.interests,
+              eventsRegistered: user.events_registered
             }
             commit('setUser', newUser)
           }
@@ -67,9 +71,11 @@ export default {
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
-              name: user.displayName,
+              username: user.username,
               email: user.email,
-              photoUrl: user.photoURL
+              isAdmin: user.isAdmin,
+              interests: user.interests,
+              eventsRegistered: user.events_registered
             }
             commit('setUser', newUser)
           }
@@ -85,9 +91,11 @@ export default {
     autoSignIn ({commit}, payload) {
       commit('setUser', {
         id: payload.uid,
-        name: payload.displayName,
+        username: payload.username,
         email: payload.email,
-        photoUrl: payload.photoURL
+        isAdmin: payload.isAdmin,
+        interests: payload.interests,
+        eventsRegistered: payload.events_registered
       })
     },
     resetPasswordWithEmail ({ commit }, payload) {
