@@ -1,47 +1,26 @@
  <template>
-<<<<<<< HEAD
- 
-<div class="green">
-=======
- <div>
-   <header>
-  <nav>
-      <div class="green">
->>>>>>> 55a1de2a74496d8531f73899eb2e01ced7203f23
-        <div class="container">
-          <v-avatar>
+    <v-toolbar
+      color="green"
+      dark
+      extended
+    >  
+      
+      <v-avatar>
         <img
           src="https://cdn.vuetifyjs.com/images/john.jpg"
           alt="John"
         >
       </v-avatar>
-       <v-toolbar-title class="white--text">User</v-toolbar-title>
+      <v-toolbar-title>ShraddhaB</v-toolbar-title>
 
-          <router-link to="/" style="    font-size: 40px; align: center">VolunteerU</router-link>  
-       
-
-    <v-btn icon>
-      <v-icon>search</v-icon>
-    </v-btn>
-
-
-        </div>
-<<<<<<< HEAD
-        </div>
-    
-  </template>
+  <!-- <v-btn large color="green"><p class="font-weight-normal">Volunteer U</p> -->
   
-=======
-      </div>
-    </nav>
-    </header>
-    <footer>
-        <div class="fixed-action-btn">
-          <v-btn class = "btn-floating btn-large green">
-            <i class ="fa fa-plus"></i>        
-        </v-btn>
-        </div>
-    </footer>
-    </div>
+      
+  
+      <v-spacer></v-spacer>
+
+      <v-toolbar-title>Total Points: 120</v-toolbar-title>
+
+    </v-toolbar>
+
   </template>
->>>>>>> 55a1de2a74496d8531f73899eb2e01ced7203f23
