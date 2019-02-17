@@ -60,90 +60,86 @@
       <v-container fluid>
         <v-layout row wrap>
           <v-flex xs12 sm6 md6>
-            <v-radio-group v-model="ex6" column>
-              <v-radio
-                label="Disabled Individuals"
-                color="red"
-                value="1"
-                required
-              ></v-radio>
-              <v-radio
-                label="Children"
-                color="red"
-                value="2"
-              ></v-radio>
-              <v-radio
-                label="Physical Development"
-                color="red"
-                value="3"
-              ></v-radio>      
-            </v-radio-group>
-          </v-flex>
-          <v-flex xs12 sm6 md6>
-            <v-radio-group v-model="ex6" column>
-              <v-radio
+              <v-checkbox id = "1" v-model="interests"
                 label="Environment"
                 color="green"
-                value="1"
-              ></v-radio>
-              <v-radio
+                value="Environment"
+              ></v-checkbox>
+              <v-checkbox id = "2" v-model="interests"
                 label="Education"
                 color="green"
-                value="2"
-              ></v-radio>
-              <v-radio
+                value="Education"
+              ></v-checkbox>
+              <v-checkbox id = "3" v-model="interests"
                 label="Disaster Relief"
                 color="green"
-                value="3"
-              ></v-radio>      
-            </v-radio-group>
+                value = "Disaster Relief"
+              ></v-checkbox>      
+
           </v-flex>
           <v-flex xs12 sm6 md6>
-            <v-radio-group v-model="ex6" column>
-              <v-radio
+              <v-checkbox id = "4" v-model="interests"
                 label="Health"
                 color="indigo"
-                value="1"
-              ></v-radio>
-              <v-radio
+                value = "Health"
+              ></v-checkbox>
+              <v-checkbox id = "5" v-model="interests"
                 label="Hunger"
                 color="indigo"
-                value="2"
-              ></v-radio>
-              <v-radio
+                value = "Hunger"
+              ></v-checkbox>
+              <v-checkbox id = "6" v-model="interests"
                 label="Access to potable water"
                 color="indigo"
-                value="3"
-              ></v-radio>      
-            </v-radio-group>
-          </v-flex>
-                    <v-flex xs12 sm6 md6>
-            <v-radio-group v-model="ex6" column>
-              <v-radio
-                label="Women"
-                color="yellow"
-                value="1"
-              ></v-radio>
-              <v-radio
-                label="Seniors"
-                color="yellow"
-                value="2"
-              ></v-radio>
-              <v-radio
-                label="Veterans"
-                color="yellow"
-                value="3"
-              ></v-radio>      
-            </v-radio-group>
+                value = "Access to potable water"
+              ></v-checkbox>      
+
           </v-flex>
 
+                    <v-flex xs12 sm6 md6>
+              <v-checkbox id = "7" v-model="interests"
+                label="Women"
+                color="yellow"
+                value = "Women"
+              ></v-checkbox>
+              <v-checkbox id = "8" v-model="interests"
+                label="Seniors"
+                color="yellow"
+                value = "Seniors"
+              ></v-checkbox>
+              <v-checkbox id = "9" v-model="interests"
+                label="Veterans"
+                color="yellow"
+                value = "Veterans"
+              ></v-checkbox>      
+
+          </v-flex>
+          <v-flex xs12 sm6 md6>
+              <v-checkbox id = "10" v-model="interests"
+                label="Disabled Individuals"
+                color="red"
+                value = "Disabled Individuals"
+              ></v-checkbox>
+              <v-checkbox id = "11" v-model="interests"
+                label="Children"
+                color="red"
+                value = "Children"
+              ></v-checkbox>
+              <v-checkbox id = "12" v-model="interests"
+                label="Physical Development"
+                color="red"
+                 value = "Physical Development"
+              ></v-checkbox>      
+
+          </v-flex>
         </v-layout>
       </v-container>
     </v-card-text>
   </v-card>
 
                       <div class="text-xs-center">
-                    <v-btn round type="submit" :disabled="loading" :loading="loading">
+                       <!-- <span>Checked names: {{ this.interests }}</span> -->
+                    <v-btn  round type="submit" :disabled="loading" :loading="loading" @click="add()">
                       Sign up
                       <v-icon right>lock_open</v-icon>
                       <span slot="loader" class="custom-loader">
@@ -174,16 +170,38 @@
 
 <script>
   export default {
-    data () {
+      data () {
       return {
         email: '',
         password: '',
         confirmPassword: '',
         isAdmin : false,
         interests: [],
-        eventsRegistered: []
+        eventsRegistered: [],
+        ex6: ['red', 'indigo', 'orange', 'primary', 'secondary', 'success', 'info', 'warning', 'error', 'red darken-3', 'indigo darken-3', 'orange darken-3']
       }
     },
+      add() {
+      this.userRegistered = true;
+      db.collection("Users")
+        .add({
+            username: this.email,
+            isAdmin: false,
+            interests: this.interests,
+            points: 0,
+            events_registered: this.eventsRegistered
+        })
+        .then(function(docRef) {
+          console.log(this.interests)
+          console.log(data)
+
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    },
+  
     computed: {
       comparePasswords () {
         return this.password !== this.confirmPassword ? 'Passwords do not match' : ''
@@ -217,4 +235,5 @@
       }
     }
   }
+
 </script>

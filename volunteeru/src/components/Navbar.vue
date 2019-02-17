@@ -1,48 +1,21 @@
  <template>
-  <!-- <v-toolbar
-      color="green"
-      dark
-      extended
-    >  
-      <v-avatar>
-        <img
-          src="https://cdn.vuetifyjs.com/images/john.jpg"
-          alt="John"
-        >
-      </v-avatar>
-      <v-toolbar-title>{{}}</v-toolbar-title>
-
-
-      <v-spacer></v-spacer>
-
-      <v-toolbar-title>Total Points: 120</v-toolbar-title>
-
-  </v-toolbar>-->
-  <v-toolbar extended dark class="primary" color="green">
-    <!-- <v-toolbar-title>
-        <router-link to="/dashboard" tag="span" style="cursor: pointer">VolunteerU</router-link>
-    </v-toolbar-title>-->
-    <div v-if="userIsAuthenticated">
-      <v-avatar>
+  <v-toolbar extended dark class="primary" color="green"> 
+      <v-avatar v-if="userIsAuthenticated">
         <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="Logo">
       </v-avatar>
-      <v-toolbar-title>marouen</v-toolbar-title>
-
-
+      <v-toolbar-title v-if="userIsAuthenticated">{{user.email}}</v-toolbar-title>
+        <v-toolbar-title v-else >
+        <router-link  to="/dashboard" tag="span" style="cursor: pointer">VolunteerU</router-link>
+    </v-toolbar-title>
     <v-spacer></v-spacer>
-
-    <v-toolbar-title>Total Points: 120</v-toolbar-title>
-        </div>
-        
+    <v-toolbar-title v-if=userIsAuthenticated> Total Points: 100 </v-toolbar-title>
     <v-toolbar-items class="hidden-xs-only">
       <v-btn flat v-for="item in menuItems" :key="item.title" :to="item.link">
         <v-icon left dark>{{ item.icon }}</v-icon>
-
         {{ item.title }}
       </v-btn>
       <v-btn v-if="userIsAuthenticated" flat @click="onLogout">
         <v-icon left dark>exit_to_app</v-icon>
-
         Logout
       </v-btn>
     </v-toolbar-items>
@@ -67,7 +40,7 @@ export default {
         { icon: "lock_open", title: "Sign in", link: "/signin" }
       ];
       if (this.userIsAuthenticated) {
-        menuItems = [{ icon: "person", title: "Mar", link: "/dashboard" }];
+        menuItems = [{}];
       }
       return menuItems;
     },
@@ -101,7 +74,7 @@ export default {
             eventsRegistered: doc.data().events_registered
           };
           this.events.push(data);
-          console.log(this.user)
+          // console.log(data)
         });
       });
     firebase.auth().onAuthStateChanged(user => {
@@ -110,7 +83,7 @@ export default {
       }
     });
   },
-
+  
 };
 </script>
 

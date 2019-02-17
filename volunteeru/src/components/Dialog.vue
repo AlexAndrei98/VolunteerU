@@ -6,12 +6,12 @@
           <v-toolbar-title>New Upcoming Events</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat @click="show = false">Done</v-btn>
+            <a href="/dashboard"><v-btn dark flat @click="show = false ; populate()">Done</v-btn></a>
           </v-toolbar-items>
         </v-toolbar>
         <v-list three-line subheader>
           <v-subheader>
-            <h3>Based on your interest in: Nature {{somethingcool}}</h3>
+            <h3>Based on your interest in: Nature {{}}</h3>
           </v-subheader>
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
@@ -39,10 +39,7 @@
                 <v-card-text>{{event.description.slice(0,200).concat("", "...")}}</v-card-text>
                 <v-card-actions>
                   <v-btn flat>Learn More</v-btn>
-                  <v-btn v-if="userRegistered" flat color="blue" @click="add(event)"
-                  >Register</v-btn>
-
-                  <v-btn v-else flat color="red" @click="userRegistered = true">Unregister</v-btn>
+                  <v-btn flat color="blue" @click="add(event)">Register</v-btn>
                 </v-card-actions>
               </v-card>
             </v-layout>
@@ -52,13 +49,13 @@
         <v-divider></v-divider>
 
         <v-list three-line subheader>
-          <v-subheader>Based on your interest in: Technology{{somethingcool}}</v-subheader>
+          <v-subheader>Based on your interest in: Technology{{}}</v-subheader>
         </v-list>
 
         <v-divider></v-divider>
 
         <v-list three-line subheader>
-          <v-subheader>Based on your interest in: Pets{{somethingcool}}</v-subheader>
+          <v-subheader>Based on your interest in: Pets{{}}</v-subheader>
         </v-list>
       </v-card>
     </v-dialog>
@@ -68,7 +65,8 @@
 
 <script>
 import axios from "axios";
-import db from './firebaseInit'
+import db from "./firebaseInit";
+import * as firebase from 'firebase'
 
 export default {
   name: "dialog",
@@ -93,8 +91,28 @@ export default {
     };
   },
   methods: {
+    populate (){
+        // this.events=[]
+                db.collection('Events').get().then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                        const data = {
+                            'id' : doc.data().id,
+                            'title' : doc.data().title,
+                            'length' : doc.data().length,
+                            'description' : doc.data().description,
+                            'users' : doc.data().users
+                        }
+                        this.events.push(data)
+                    });
+                })
+                firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                  this.$store.dispatch('autoSignIn', user)
+                  }
+                })
+              }
+              ,
     add(event) {
-      this.userRegistered = false;
       db.collection("Events")
         .add({
           title: event.title,
@@ -108,6 +126,7 @@ export default {
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
+        this.events.splice( this.events.indexOf(event), 1 );
     },
     getEvents(topic) {
       const apiKey = "H3GRCF3QTFHEFSUIYHWU";
@@ -171,7 +190,8 @@ export default {
             this.events1.push(data);
           }
         });
-    }
+    },
+
   },
   created() {
     this.getEvents("nature");

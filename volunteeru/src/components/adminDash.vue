@@ -19,8 +19,6 @@
 
         <v-card-actions>
           <v-btn flat>Learn More</v-btn>
-          <v-btn v-if="userRegistered" flat color="blue">Register</v-btn>
-          <v-btn v-else flat color="red" @click="deleteEvent(event)">Unregister</v-btn>
         </v-card-actions>
       </v-card>
           </v-layout>

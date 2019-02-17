@@ -19,11 +19,35 @@ export default {
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
-              username: user.displayName,
-              email: user.email,
-              isAdmin: user.isAdmin,
+              username: user.email,
+              isAdmin: false,
               interests: user.interests,
-              eventsRegistered: user.events_registered
+              eventsRegistered: []
+            }
+            commit('setUser', newUser)
+          }
+        )
+        .catch(
+          error => {
+            commit('setLoading', false)
+            commit('setError', error)
+            console.log(error)
+          }
+        )
+    },
+    signAdminUp ({commit}, payload) {
+      commit('setLoading', true)
+      commit('clearError')
+      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+        .then(
+          user => {
+            commit('setLoading', false)
+            const newUser = {
+              id: user.uid,
+              username: user.email,
+              isAdmin: true,
+              interests: user.interests,
+              eventsRegistered: []
             }
             commit('setUser', newUser)
           }
@@ -45,9 +69,8 @@ export default {
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
-              username: user.displayName,
-              email: user.email,
-              isAdmin: user.isAdmin,
+              username: user.email,
+              isAdmin: false,
               interests: user.interests,
               eventsRegistered: user.events_registered
             }
@@ -72,7 +95,6 @@ export default {
             const newUser = {
               id: user.uid,
               username: user.username,
-              email: user.email,
               isAdmin: user.isAdmin,
               interests: user.interests,
               eventsRegistered: user.events_registered
