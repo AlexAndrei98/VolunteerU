@@ -71,7 +71,7 @@ import axios from "axios";
 import db from './firebaseInit'
 
 export default {
-  name: "newEvent",
+  name: "dialog",
   props: {
     value: Boolean
   },

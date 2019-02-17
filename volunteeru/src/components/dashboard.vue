@@ -31,7 +31,7 @@
           @click.stop="showDialog=true">
             <i class ="fa fa-plus"></i>        
         </v-btn>
-        <Dialog v-model="showDialog" />
+        <dialogBox v-model="showDialog" />
         </div>
     </footer>
     </div>
@@ -65,7 +65,13 @@
                         this.events.push(data)
                     });
                 })
-            }
-        }
-        
-    </script>
+                // firebase.auth().onAuthStateChanged((user) => {
+                // if (user) {
+                //   this.$store.dispatch('autoSignIn', user)
+                //   }
+                // })
+              }
+    // firebase.initializeApp(firebaseConfig)
+    
+  }
+ </script>
