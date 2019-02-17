@@ -8,7 +8,7 @@
         <router-link  to="/dashboard" tag="span" style="cursor: pointer">VolunteerU</router-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-toolbar-title v-if=userIsAuthenticated> Total Points: 100 </v-toolbar-title>
+    <v-toolbar-title v-if=userIsAuthenticated> Total Points: 122 </v-toolbar-title>
     <v-toolbar-items class="hidden-xs-only">
       <v-btn flat v-for="item in menuItems" :key="item.title" :to="item.link">
         <v-icon left dark>{{ item.icon }}</v-icon>

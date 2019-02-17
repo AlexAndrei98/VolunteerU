@@ -4,12 +4,6 @@
       <v-container fluid grid-list-sm>
        <v-layout row wrap>
       <v-card v-for="event in events" v-bind:key = event.id style="margin-right:10px; margin-top:20px;" width="45vh">
-        <!-- <v-img
-          class= "purple darken-2"
-          height="200px"
-          width="345px"
-        >
-        </v-img> -->
 
         <v-card-title primary-title>
           <div>
@@ -80,7 +74,6 @@
             querySnapshot.forEach((doc) => {
               doc.ref.delete();
               
-              // this.$router.push('/')
             })
             this.populate()
           })
@@ -105,19 +98,6 @@
                   }
                 })
               }
-//                 dropit(e) {
-//                        console.log(e);
-//                        console.log(this.events)
-//                     for( var i = 0; i < this.events.length; i++){
-//                       if ( this.events[i].title == e.title) 
-//                         this.events.splice( this.events.indexOf(e), 1 );
-//                         db.collection("Events").doc(e).delete().then(function() {
-//     console.log("Document successfully deleted!");
-// }).catch(function(error) {
-//     console.error("Error removing document: ", error);
-// });
-//                     }
-//                 }     
      }
   }
  </script>

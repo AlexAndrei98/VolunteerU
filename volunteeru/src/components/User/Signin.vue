@@ -112,10 +112,7 @@
     },
     methods: {
       onSignin () {
-        if(!this.user.isAdmin)
         this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
-        else
-             this.$store.dispatch('signAdminIn', {email: this.email, password: this.password})  
       },
       onSigninGoogle () {
         this.$store.dispatch('signUserInGoogle')
