@@ -1,5 +1,6 @@
 <template>
 <div>
+  <h3> Events you signed up for </h3>
       <v-container fluid grid-list-sm>
        <v-layout row wrap>
       <v-card v-for="event in events" v-bind:key = event.id style="margin-right:10px; margin-top:20px;" width="45vh">
@@ -34,6 +35,7 @@
         <dialogBox v-model="showDialog" />
         </div>
     </footer>
+         <h3> D3.JS Visualizations </h3>
     </div>
 </template>
 
