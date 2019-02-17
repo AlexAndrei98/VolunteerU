@@ -5,9 +5,11 @@ import router from './router'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import Dialog from './Components/Dialog'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
+Vue.component('dialog', Dialog)
 
 /* eslint-disable no-new */
 new Vue({

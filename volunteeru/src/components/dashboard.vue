@@ -5,7 +5,8 @@
 <v-container fluid>
     <v-layout column>
       <v-flex v-for="event in events" v-bind:key = event.id style="margin-top:20px;"> 
-          <v-layout>
+
+    <v-layout>
       <v-card> 
         <v-img
           class= "purple darken-2"
@@ -25,35 +26,37 @@
           <v-btn flat>Learn More</v-btn>
           <v-btn v-if="userRegistered" flat color="blue">Register</v-btn>
           <v-btn v-else flat color="red">Unregister</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn icon @click="show = !show">
-          </v-btn>
         </v-card-actions>
-
-
-        <v-slide-y-transition>
-          <v-card-text v-show="show">
-            I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-          </v-card-text>
-        </v-slide-y-transition>
       </v-card>
-
           </v-layout>
+
       </v-flex>
     </v-layout>
 
+    <footer>
+        <div class="fixed-action-btn">
+          <v-btn class = "btn-floating btn-large green"
+          @click.stop="showDialog=true">
+            <i class ="fa fa-plus"></i>        
+        </v-btn>
+        <Dialog v-model="showDialog" />
+        </div>
+    </footer>
   </v-container>
- 
 </template>
 
     <script>
         import db from './firebaseInit'
+        import Dialog from '../components/Dialog'
+
+
         export default {
             name: 'dashboard',
+            components: { Dialog },
             data() {
                 return {
-                    events: []
-                    
+                    events: [],
+                    showDialog: false
                 }
             },
             created () {
