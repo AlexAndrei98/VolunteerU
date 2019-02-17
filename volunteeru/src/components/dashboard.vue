@@ -30,6 +30,10 @@
         </div>
     </footer>
          <h3> D3.JS Visualizations </h3>
+         <div>
+           <img src="./ciao.png" alt="Italian Trulli" height="600px">
+
+           </div>
     </div>
 </template>
 
