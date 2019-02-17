@@ -1,16 +1,7 @@
 <template>
-  <div id="newEvent">
-    <ul>
-      <li v-for="event in events" :key="event">{{event}}</li>
-    </ul>
-  </div>
-</template>
-<template>
-  <v-container fluid>
-    <v-layout column>
-      <v-flex v-for="event in events" v-bind:key="event.id" style="margin-top:20px;">
-        <v-layout>
-          <v-card color=red style="width:400px;">
+  <v-layout row justify-center>
+    <v-dialog v-model="show" fullscreen hide-overlay transition="dialog-bottom-transition">
+          <v-card  v-for="event in events" v-bind:key="event.id" style="margin-top:20px;">
             <v-card-title primary-title>
               <div>
                 <div class="headline">{{event.title}}</div>
@@ -26,16 +17,29 @@
               <v-btn v-else flat color="red">Unregister</v-btn>
             </v-card-actions>
           </v-card>
-        </v-layout>
-      </v-flex>
-    </v-layout>
-  </v-container>
+    </v-dialog>
+  </v-layout>
 </template>
+
+
 <script>
 import axios from "axios";
 
 export default {
   name: "newEvent",
+  props: {
+     value: Boolean
+  },
+  computed: {
+    show: {
+      get () {
+        return this.value
+      },
+      set (value) {
+         this.$emit('input', value)
+      }
+    },
+  },
   data() {
     return {
       events: [],

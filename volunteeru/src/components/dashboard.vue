@@ -60,8 +60,7 @@
                             'title' : doc.data().title,
                             'length' : doc.data().length,
                             'description' : doc.data().description,
-                            'users' : doc.data().users,
-                            'img' : doc.data().img
+                            'users' : doc.data().users
                         }
                         this.events.push(data)
                     });

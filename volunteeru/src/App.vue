@@ -15,7 +15,7 @@ export default {
   name: 'App',
   components: {
     Navbar,
-    'Dialog' : Dialog
+    'dialog' : Dialog
   }
 }
 </script>
