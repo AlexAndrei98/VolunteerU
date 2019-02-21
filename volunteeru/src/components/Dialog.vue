@@ -7,9 +7,9 @@
           <v-toolbar-title>New Upcoming Events</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <a href="/dashboard">
-              <v-btn dark flat @click="show = false ; populate()">Done</v-btn>
-            </a>
+            <!-- <a href="/dashboard"> -->
+              <v-btn dark flat @click="show = !show ; populate()">Done</v-btn>
+            <!-- </a> -->
           </v-toolbar-items>
         </v-toolbar>
         <v-list three-line subheader>
